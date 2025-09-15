@@ -1,7 +1,7 @@
 
 ---
 
-### Explanation of Changes
+### Overview of the project
 1. **Project Structure**:
    - package is `com.example.instructions`.
    - Classes: `InstructionsCaptureApplication`, `CanonicalTrade`, `PlatformTrade`, `TradeService`, `TradeController`, `KafkaPublisher`, `KafkaListenerService`, and `TradeTransformer` to separate concerns.
