@@ -1,0 +1,20 @@
+{
+    "platform_id": "ABBT123",
+    "trade": {
+      "account": "****5678",
+      "security": "ABC123",
+      "type": "B",
+      "amount": 100000,
+      "timestamp": "2025-08-04T21:15:33Z"
+    }
+}
+{
+    "platform_id": "ABBT123",
+    "trade": {
+      "account": "****4321",
+      "security": "DEF456",
+      "type": "S",
+      "amount": 200000,
+      "timestamp": "2025-08-04T21:16:00Z"
+    }
+}

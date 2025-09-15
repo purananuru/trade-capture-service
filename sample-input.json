@@ -1,0 +1,16 @@
+[
+    {
+      "accountNumber": "12345678",
+      "securityId": "abc123",
+      "tradeType": "buy",
+      "amount": 100000,
+      "timestamp": "2025-08-04T21:15:33Z"
+    },
+    {
+      "accountNumber": "87654321",
+      "securityId": "def456",
+      "tradeType": "sell",
+      "amount": 200000,
+      "timestamp": "2025-08-04T21:16:00Z"
+    }
+  ]
