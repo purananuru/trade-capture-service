@@ -35,7 +35,7 @@
 ---
 
 ### Assumptions
-- **platform_id**: Hardcoded as "ABBT123" per the example. 
+- **platform_id**: Hardcoded as "ACCT123" per the example. 
 - **Input Fields**: Assumed `amount` and `timestamp` are in CSV/JSON inputs and Kafka messages. If generated (e.g., timestamp at processing time).
 - **Timestamp Format**: ISO 8601 (`2025-08-04T21:15:33Z`). 
 - **Error Handling**: Exceptions for invalid inputs
@@ -60,7 +60,7 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 ### How to Test
 1. **Build and Run**:
    - `mvn clean package`
-   - `java -jar target/instructions-capture-service-1.0.0.jar --spring.profiles.active=dev`
+   - `java -jar target/trade-capture-service-1.0.0.jar --spring.profiles.active=dev`
    - Ensure Kafka is running (e.g., Docker: `docker-compose up`).
 
 2. **File Upload**:

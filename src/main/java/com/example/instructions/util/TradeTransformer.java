@@ -23,7 +23,7 @@ public class TradeTransformer {
         } else {
             canonical.setAccountNumber(acc != null ? acc : "");
         }
-        // Uppercase and validate security_id (alphanumeric only)
+        // Uppercase and validate security_id 
         String sec = input.getSecurityId() != null ? input.getSecurityId().toUpperCase() : "";
         if (!sec.matches("^[A-Z0-9]+$")) {
             throw new IllegalArgumentException("Invalid security_id format: " + sec);

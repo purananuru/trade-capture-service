@@ -57,7 +57,7 @@ public class TradeService {
             throw new IllegalStateException("Canonical trade is null after transformation");
         }
         String id = generateId(canonical);
-        storage.put(id, canonical); // Store for auditing/retry
+        storage.put(id, canonical); 
         String json = transformer.toPlatformJson(canonical);
         kafkaPublisher.publish(json);
     }

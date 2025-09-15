@@ -3,7 +3,7 @@ package com.example.instructions.model;
 import java.time.ZonedDateTime;
 
 public class PlatformTrade {
-    private String platformId = "ABBT123"; // Hardcoded as per example
+    private String platformId = "ACCT123"; 
     private TradeDetails trade;
 
     public static class TradeDetails {
