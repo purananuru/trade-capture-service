@@ -41,7 +41,7 @@
 - **Error Handling**: Exceptions for invalid inputs
 
 ---
-# Instructions Capture Service
+# Trade Capture Service
 
 A Spring Boot microservice for processing trade instructions from files or Kafka, transforming to canonical format, and publishing to Kafka.
 
@@ -77,3 +77,14 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 
 5. **Swagger Docs**:
     - `http://localhost:8080/swagger-ui.html`
+
+6. **Build the image**:
+   - `docker build -t trade-capture-service .`
+
+7. **Run the Docker Container**:
+   - `docker run --name trade-capture-service \
+           --network trade-capture-service_kafka-network \
+           -e SPRING_PROFILES_ACTIVE=dev \
+           -p 8080:8080 \
+           -d trade-capture-service`
+
