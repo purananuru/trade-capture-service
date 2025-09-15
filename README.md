@@ -64,7 +64,7 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
    - Ensure Kafka is running (e.g., Docker: `docker-compose up`).
 
 2. **File Upload**:
-   - curl.exe -X POST -F "file=@sample-input.csv" http://localhost:8080/upload
+   - `curl.exe -X POST -F "file=@sample-input.csv" http://localhost:8080/upload`
 
 3. **Kafka Input**:
    - `kafka-console-producer --topic instructions.inbound --bootstrap-server localhost:9092`
@@ -73,7 +73,7 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 
 4. **Kafka Output**:
     - `kafka-console-consumer --topic instructions.outbound --from-beginning --bootstrap-server localhost:9092`
-    - shoudl match the 
+    - shoudl match the expected-output.json
 
 5. **Swagger Docs**:
-    - `Access http://localhost:8080/swagger-ui.html`
+    - `http://localhost:8080/swagger-ui.html`
