@@ -36,17 +36,17 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
    - Import postman-collection.json and ensure the right file value is uploded in the body
    - Hit Send
 
-3. **Kafka Input**:
+4. **Kafka Input**:
    - `docker exec -it trade-capture-service-kafka-1 kafka-console-producer --topic instructions.inbound --bootstrap-server kafka:9092`
      ```json
      {"accountNumber":"12345678","securityId":"abc123","tradeType":"buy","amount":100000,"timestamp":"2025-08-04T21:15:33Z"}
    - Ctrl-C
 
-4. **Kafka Output**:
+5. **Kafka Output**:
     - `docker exec -it trade-capture-service-kafka-1 kafka-console-consumer --topic instructions.outbound --from-beginning --bootstrap-server kafka:9092`
     - Ctrl-C
 
-5. **Swagger Docs**:
+6. **Swagger Docs**:
     - `http://localhost:8080/swagger-ui.html`
 
 ---
