@@ -77,10 +77,4 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 
 ---
 
-### Assumptions
-- **platform_id**: Hardcoded as "ACCT123" per the example. 
-- **Input Fields**: Assumed `amount` and `timestamp` are in CSV/JSON inputs and Kafka messages. If generated (e.g., timestamp at processing time).
-- **Timestamp Format**: ISO 8601 (`2025-08-04T21:15:33Z`). 
-- **Error Handling**: Exceptions for invalid inputs
 
----
