@@ -31,6 +31,11 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 2. **File Upload**:
    - `curl.exe -X POST -F "file=@sample-input.csv" http://localhost:8080/upload`
 
+3. **Postman Upload**:
+   - Alternatively, use Postman to upload the CSV
+   - Import postman-collection.json and ensure the right file value is uploded in the body
+   - Hit Send
+
 3. **Kafka Input**:
    - `docker exec -it trade-capture-service-kafka-1 kafka-console-producer --topic instructions.inbound --bootstrap-server kafka:9092`
      ```json
