@@ -1,5 +1,5 @@
 {
-    "platform_id": "ABBT123",
+    "platform_id": "ACCT123",
     "trade": {
       "account": "****5678",
       "security": "ABC123",
@@ -9,7 +9,7 @@
     }
 }
 {
-    "platform_id": "ABBT123",
+    "platform_id": "ACCT123",
     "trade": {
       "account": "****4321",
       "security": "DEF456",

@@ -51,40 +51,44 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
    - Java 17+
    - Maven 3.8+
    - Kafka/Zookeeper (e.g., run locally with Docker: `docker-compose up` for Kafka)
+   -- `docker-compose up -d`
    - Create topics:
-   -- kafka-topics --create --topic instructions.inbound --bootstrap-server localhost:9092
-   -- kafka-topics --create --topic instructions.outbound --bootstrap-server localhost:9092
+   -- `docker exec -it <kafka-container-name> bash` (use docker ps to get name)
+   -- `kafka-topics --create --topic instructions.inbound --bootstrap-server localhost:9092`
+   -- `kafka-topics --create --topic instructions.outbound --bootstrap-server localhost:9092`
 
 ---
 
 ### How to Test
-1. **Build and Run**:
+1. **Build,  Run, Test **:
    - `mvn clean package`
-   - `java -jar target/trade-capture-service-1.0.0.jar --spring.profiles.active=dev`
-   - Ensure Kafka is running (e.g., Docker: `docker-compose up`).
+
+---
+### Docker setup
+
+1. **Build the image**:
+   - `mvn clean package`
+   - `docker build -t instructions-capture-service .` (rename kafka:9092 in application-dev.yml as localhost doesn't work in docker)
+   - `docker-compose up -d`
+   - `docker ps`
+
+2. **Create Topics**:
+   - ` docker exec instructions-capture-service-kafka-1 kafka-topics --create --topic instructions.inbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1`
+   - `docker exec instructions-capture-service-kafka-1 kafka-topics --create --topic instructions.outbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1`
+   - `docker exec instructions-capture-service-kafka-1 kafka-topics --list --bootstrap-server kafka:9092`
 
 2. **File Upload**:
    - `curl.exe -X POST -F "file=@sample-input.csv" http://localhost:8080/upload`
 
 3. **Kafka Input**:
-   - `kafka-console-producer --topic instructions.inbound --bootstrap-server localhost:9092`
+   - `docker exec -it instructions-capture-service-kafka-1 kafka-console-producer --topic instructions.inbound --bootstrap-server kafka:9092`
      ```json
      {"accountNumber":"12345678","securityId":"abc123","tradeType":"buy","amount":100000,"timestamp":"2025-08-04T21:15:33Z"}
 
 4. **Kafka Output**:
-    - `kafka-console-consumer --topic instructions.outbound --from-beginning --bootstrap-server localhost:9092`
-    - shoudl match the expected-output.json
+    - `docker exec -it instructions-capture-service-kafka-1 kafka-console-consumer --topic instructions.outbound --from-beginning --bootstrap-server kafka:9092`
+    - Ctrl-C
 
 5. **Swagger Docs**:
     - `http://localhost:8080/swagger-ui.html`
-
-6. **Build the image**:
-   - `docker build -t trade-capture-service .`
-
-7. **Run the Docker Container**:
-   - `docker run --name trade-capture-service \
-           --network trade-capture-service_kafka-network \
-           -e SPRING_PROFILES_ACTIVE=dev \
-           -p 8080:8080 \
-           -d trade-capture-service`
 

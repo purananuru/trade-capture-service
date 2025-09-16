@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>trade-capture-service</artifactId>
+    <artifactId>instructions-capture-service</artifactId>
     <version>1.0.0</version>
 
     <parent>
