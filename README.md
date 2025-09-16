@@ -9,23 +9,23 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
    - Maven 3.8+
    
 ---
-### How to Test
+### How to Test Mock
 1. **Build,  Run, Test **:
    - `mvn clean package`
 
 ---
-### Docker setup
+### Docker setup and testing the setup
 
 1. **Build the image**:
    - `mvn clean package`
-   - `docker build -t instructions-capture-service .` (rename kafka:9092 in application-dev.yml as localhost doesn't work in docker)
+   - `docker build -t instructions-capture-service .`
    - `docker-compose up -d`
    - `docker ps`
 
 2. **Create Topics**:
-   - `docker exec trade-capture-service-kafka-1 kafka-topics --create --topic instructions.inbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1` (Note: modify the image name based on docker ps output)
-   - `docker exec trade-capture-service-kafka-1 kafka-topics --create --topic instructions.outbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1` (Note: modify the image name based on docker ps output)
-   - `docker exec trade-capture-service-kafka-1 kafka-topics --list --bootstrap-server kafka:9092` (Note: modify the image name based on docker ps output)
+   - `docker exec trade-capture-service-kafka-1 kafka-topics --create --topic instructions.inbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1` 
+   - `docker exec trade-capture-service-kafka-1 kafka-topics --create --topic instructions.outbound --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1` 
+   - `docker exec trade-capture-service-kafka-1 kafka-topics --list --bootstrap-server kafka:9092` 
 
 2. **File Upload**:
    - `curl.exe -X POST -F "file=@sample-input.csv" http://localhost:8080/upload`
@@ -45,32 +45,28 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
 
 ---
 ### Overview of the project
-1. **Project Structure**:
-   - package is `com.example.instructions`.
-   - Classes: `InstructionsCaptureApplication`, `CanonicalTrade`, `PlatformTrade`, `TradeService`, `TradeController`, `KafkaPublisher`, `KafkaListenerService`, and `TradeTransformer` to separate concerns.
-
-2. **Separation of Concerns**:
+1. **Separation of Concerns**:
    - `TradeTransformer`: Handles canonical transformation and platform JSON conversion, including input sanitization.
    - `KafkaPublisher`: Manages asynchronous Kafka publishing to `instructions.outbound`.
    - `KafkaListenerService`: Listens to `instructions.inbound` and delegates to `TradeService`.
    - `TradeService`: Orchestrates parsing, transformation, storage, and publishing.
    - `TradeController`: Handles file uploads via REST.
 
-3. **Model**:
+2. **Model**:
    - `CanonicalTrade` and `PlatformTrade`
 
-4. **Security**:
+3. **Security**:
    - Sanitization in `TradeTransformer.sanitize` prevents injection attacks.
    - Masking of `accountNumber` ensures sensitive data protection.
    - Logging avoids sensitive fields (configured in `application.yml`).
 
-5. **Performance**:
+4. **Performance**:
    - Stream-based CSV parsing with Apache Commons CSV.
    - Asynchronous Kafka publishing via `KafkaTemplate`.
    - `ConcurrentHashMap` for thread-safe in-memory storage.
 
 6. **Bonus Features**:
-   - **Tests**: Updated to test new class structure, mocking `TradeTransformer` and `KafkaPublisher`.
+   - **Tests**: Mocking `TradeTransformer` and `KafkaPublisher`.
    - **Spring Profiles**: `application-dev.yml` and `application-prod.yml` for environment-specific Kafka configs.
    - **Swagger**: Accessible at `/swagger-ui.html` for API documentation.
    - **Dockerfile**: For containerization.
