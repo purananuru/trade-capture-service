@@ -15,7 +15,7 @@
               {
                 "key": "file",
                 "type": "file",
-                "src": "C:\\Users\\ray_m\\apps\\instructions-capture-service\\sample-input.csv"
+                "src": "C:<your folder>\\trade-capture-service\\sample-input.csv"
               }
             ]
           },
