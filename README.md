@@ -1,4 +1,14 @@
+# Trade Capture Service
 
+A Spring Boot microservice for processing trade instructions from files or Kafka, transforming to canonical format, and publishing to Kafka.
+
+## Setup Instructions
+
+1. **Prerequisites**:
+   - Java 17+
+   - Maven 3.8+
+   
+---
 ### How to Test
 1. **Build,  Run, Test **:
    - `mvn clean package`
@@ -73,15 +83,4 @@
 - **Timestamp Format**: ISO 8601 (`2025-08-04T21:15:33Z`). 
 - **Error Handling**: Exceptions for invalid inputs
 
----
-# Trade Capture Service
-
-A Spring Boot microservice for processing trade instructions from files or Kafka, transforming to canonical format, and publishing to Kafka.
-
-## Setup Instructions
-
-1. **Prerequisites**:
-   - Java 17+
-   - Maven 3.8+
-   
 ---
