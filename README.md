@@ -10,7 +10,8 @@ A Spring Boot microservice for processing trade instructions from files or Kafka
    
 ---
 ### How to Test Mock
-1. **Build,  Run, Test **:
+
+1. **Build,  Run, Test**:
    - `mvn clean package`
 
 ---
